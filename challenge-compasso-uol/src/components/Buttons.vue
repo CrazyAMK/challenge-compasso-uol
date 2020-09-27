@@ -45,6 +45,7 @@ export default {
         this.isShowResult = true;
         this.title = "User Repositories";
       });
+      this.$emit("ViewRepos", this.title);
     },
     ViewStarred() {
       console.log(this.username);
@@ -54,6 +55,7 @@ export default {
         this.isShowResult = true;
         this.title = "Starred Repositories";
       });
+      this.$emit("ViewStarred", this.title);
     },
   },
 };
