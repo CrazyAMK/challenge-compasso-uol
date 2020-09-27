@@ -6,7 +6,9 @@
         Starred
       </button>
     </div>
-    <Results :repos="repos" v-show="isShowResult" :title="title"></Results>
+    <Results :repos="repos" v-show="isShowResult">
+      <h2 slot="title">{{ title }}</h2>
+    </Results>
   </div>
 </template>
 <script>
@@ -27,14 +29,12 @@ export default {
       type: String,
       required: true,
     },
-    title: {
-      type: String,
-    },
   },
   data() {
     return {
       repos: [],
       isShowResult: false,
+      title: "Repositories",
     };
   },
   methods: {
