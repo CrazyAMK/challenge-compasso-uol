@@ -47,7 +47,6 @@ export default {
     search() {
       const api = `https://api.github.com/users/${this.username}`;
       this.isShowResults = true;
-      $(".results").hide();
       Vue.axios
         .get(api)
         .then((response) => {
