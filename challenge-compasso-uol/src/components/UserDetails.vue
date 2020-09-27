@@ -9,23 +9,23 @@
       </div>
       <div class="col-sm-6 align-self-center mb-3 list-group-flush">
         <div class="col-12 list-group-item" v-if="data.name">
-          Name: {{ data.name }}
+          <b>Name:</b> {{ data.name }}
         </div>
         <div class="col-12 list-group-item" v-if="data.login">
-          Username: {{ data.login }}
+          <b>Username:</b> {{ data.login }}
         </div>
         <div class="col-12 list-group-item" v-if="data.company">
-          Company: {{ data.company }}
+          <b>Company:</b> {{ data.company }}
         </div>
         <div class="col-12 list-group-item" v-if="data.blog">
-          Blog:
+          <b>Blog:</b>
           <a :href="'https://' + data.blog" target="_blank">{{ data.blog }}</a>
         </div>
         <div class="col-12 list-group-item" v-if="data.location">
-          Location: {{ data.location }}
+          <b>Location:</b> {{ data.location }}
         </div>
         <div class="col-12 list-group-item" v-if="data.twitter_username">
-          Twitter:
+          <b>Twitter:</b>
           <a
             :href="'https://twitter.com/' + data.twitter_username"
             target="_blank"
