@@ -7,32 +7,32 @@
           <img :src="data.avatar_url" :alt="data.name" />
         </div>
       </div>
-      <div class="col-sm-6 align-self-center mb-3 list-group-flush">
-        <div class="col-12 list-group-item" v-if="data.name">
+      <ul class="col-sm-6 align-self-center mb-3 list-group-flush">
+        <li class="col-12 list-group-item" v-if="data.name">
           <b>Name:</b> {{ data.name }}
-        </div>
-        <div class="col-12 list-group-item" v-if="data.login">
+        </li>
+        <li class="col-12 list-group-item" v-if="data.login">
           <b>Username:</b> {{ data.login }}
-        </div>
-        <div class="col-12 list-group-item" v-if="data.company">
+        </li>
+        <li class="col-12 list-group-item" v-if="data.company">
           <b>Company:</b> {{ data.company }}
-        </div>
-        <div class="col-12 list-group-item" v-if="data.blog">
+        </li>
+        <li class="col-12 list-group-item" v-if="data.blog">
           <b>Blog:</b>
           <a :href="'https://' + data.blog" target="_blank">{{ data.blog }}</a>
-        </div>
-        <div class="col-12 list-group-item" v-if="data.location">
+        </li>
+        <li class="col-12 list-group-item" v-if="data.location">
           <b>Location:</b> {{ data.location }}
-        </div>
-        <div class="col-12 list-group-item" v-if="data.twitter_username">
+        </li>
+        <li class="col-12 list-group-item" v-if="data.twitter_username">
           <b>Twitter:</b>
           <a
             :href="'https://twitter.com/' + data.twitter_username"
             target="_blank"
             >@{{ data.twitter_username }}</a
           >
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
 
     <Buttons :username="data.login"></Buttons>
