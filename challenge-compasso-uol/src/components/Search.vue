@@ -65,7 +65,6 @@ export default {
       let userSet = window.location.href;
       userSet = userSet.replace("#/", "");
       userSet = userSet.split("/")[3];
-      console.log(userSet);
       $(".search-box input").val(userSet);
       $(".search-box input").value = userSet;
     });

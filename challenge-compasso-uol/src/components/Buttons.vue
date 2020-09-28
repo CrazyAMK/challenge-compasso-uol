@@ -48,7 +48,6 @@ export default {
       this.$emit("ViewRepos", this.title);
     },
     ViewStarred() {
-      console.log(this.username);
       const api = `https://api.github.com/users/${this.username}/starred`;
       Vue.axios.get(api).then((response) => {
         this.repos = response.data;
