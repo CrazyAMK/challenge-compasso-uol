@@ -1,6 +1,7 @@
 <template>
   <div v-if="data.length != 0" class="user-details mt-5">
     <h2>User details</h2>
+    <hr />
     <div class="row flex-row-reverse">
       <div class="col-sm-6 align-self-center">
         <div class="col-12 avatar_img m-auto pb-2">
@@ -17,9 +18,12 @@
         <li class="col-12 list-group-item" v-if="data.company">
           <b>Company:</b> {{ data.company }}
         </li>
+        <li class="col-12 list-group-item" v-if="data.email">
+          <b>Email:</b> {{ data.email }}
+        </li>
         <li class="col-12 list-group-item" v-if="data.blog">
           <b>Blog:</b>
-          <a :href="'https://' + data.blog" target="_blank">{{ data.blog }}</a>
+          <a :href="data.blog" target="_blank">{{ data.blog }}</a>
         </li>
         <li class="col-12 list-group-item" v-if="data.location">
           <b>Location:</b> {{ data.location }}
@@ -64,5 +68,9 @@ export default {
 
 .avatar_img img {
   max-width: 100%;
+}
+
+ul li:first-child {
+  border-top: 0;
 }
 </style>
