@@ -8,6 +8,8 @@
           type="text"
           v-model="username"
           class="form-control"
+          id="search-input"
+          title="Input Enter an username..."
           placeholder="Enter an username..."
         />
       </div>
