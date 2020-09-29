@@ -8,9 +8,24 @@
           <a
             :href="repo.html_url"
             target="_blank"
-            class="list-group-item list-group-item-action"
-            >{{ repo.name }}</a
+            class="list-group-item list-group-item-action d-md-flex"
           >
+            <div class="col-md-6">
+              {{ repo.name }}
+            </div>
+            <div class="col-md-6 text-md-right">
+              <span class="badge badge-dark">
+                Forks: {{ repo.forks_count }}
+              </span>
+              <span class="badge badge-info">
+                Watchers: {{ repo.watchers_count }}
+              </span>
+              <span class="badge badge-success">
+                Stars: {{ repo.stargazers_count }}
+              </span>
+            </div>
+            <div></div>
+          </a>
         </li>
       </ul>
     </div>
