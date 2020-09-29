@@ -54,6 +54,14 @@ export default {
         }
       }
 
+      let newURL = this.username;
+
+      window.history.pushState(
+        "Search Github User | " + this.username,
+        "Search Github User",
+        newURL
+      );
+
       this.$emit("onSearch", data);
     },
   },
