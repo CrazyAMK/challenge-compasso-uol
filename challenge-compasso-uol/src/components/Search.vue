@@ -13,7 +13,11 @@
           placeholder="Enter an username..."
         />
       </div>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+      <button
+        id="btn-submit"
+        class="btn btn-outline-success my-2 my-sm-0"
+        type="submit"
+      >
         Search
       </button>
     </form>
@@ -58,8 +62,12 @@ export default {
       let userSet = window.location.href;
       userSet = userSet.replace("#/", "");
       userSet = userSet.split("/")[3];
-      $(".search-box input").val(userSet);
-      $(".search-box input").value = userSet;
+
+      if (userSet.length != 0) {
+        this.username = userSet;
+        $("#btn-submit").click();
+        $(".search-box input").value = this.username;
+      }
     });
   },
 };
