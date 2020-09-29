@@ -38,11 +38,6 @@
         </li>
       </ul>
     </div>
-
-    <Buttons :username="data.login"></Buttons>
-  </div>
-  <div v-else-if="data.length == 0">
-    <p class="alert alert-danger" role="alert">{{ errorsMsg }}</p>
   </div>
 </template>
 

@@ -1,29 +1,18 @@
 <template>
   <div>
     <div class="col-12 mt-4 text-center">
-      <button @click="ViewRepos" class="btn btn-outline-success">Repos</button>
-      <button @click="ViewStarred" class="btn btn-outline-success">
+      <button @click="viewRepos" class="btn btn-outline-success">Repos</button>
+      <button @click="viewStarred" class="btn btn-outline-success">
         Starred
       </button>
     </div>
-    <Results :repos="repos" v-show="isShowResult">
+    <!-- <Results :repos="repos" v-show="isShowResult">
       <h2 slot="title">{{ title }}</h2>
-    </Results>
+    </Results> -->
   </div>
 </template>
 <script>
-import Vue from "vue";
-import axios from "axios";
-import VueAxios from "vue-axios";
-
-import Results from "./Results";
-
-Vue.use(VueAxios, axios);
-
 export default {
-  components: {
-    Results,
-  },
   props: {
     username: {
       type: String,
@@ -32,29 +21,63 @@ export default {
   },
   data() {
     return {
-      repos: [],
-      isShowResult: false,
+      repos: null,
+      errorsMsg: "",
       title: "Repositories",
     };
   },
   methods: {
-    ViewRepos() {
+    async viewRepos() {
+      let data = null;
+      this.errorsMsg = "";
       const api = `https://api.github.com/users/${this.username}/repos`;
-      Vue.axios.get(api).then((response) => {
-        this.repos = response.data;
-        this.isShowResult = true;
-        this.title = "User Repositories";
+      this.title = "User Repositories";
+      try {
+        let response = await this.axios.get(api);
+        data = response.data;
+        if (data.length == 0) {
+          this.errorsMsg = "Repositories not found";
+        }
+      } catch (error) {
+        const { status, statusText } = error.response;
+        if (status === 404) {
+          this.errorsMsg = "User not found";
+        } else {
+          this.errorsMsg = "API Error: " + statusText;
+        }
+      }
+      this.$emit("clickButton", {
+        title: this.title,
+        repos: data,
+        errors: this.errorsMsg,
       });
-      this.$emit("ViewRepos", this.title);
     },
-    ViewStarred() {
+    async viewStarred() {
+      let data = null;
+      this.errorsMsg = "";
       const api = `https://api.github.com/users/${this.username}/starred`;
-      Vue.axios.get(api).then((response) => {
-        this.repos = response.data;
-        this.isShowResult = true;
-        this.title = "Starred Repositories";
+      this.title = "Starred Repositories";
+      try {
+        let response = await this.axios.get(api);
+        data = response.data;
+        if (data.length == 0) {
+          this.errorsMsg = "Repositories not found";
+        }
+      } catch (error) {
+        console.log(error.response);
+        const { status, statusText } = error.response;
+        if (status === 404) {
+          this.errorsMsg = "Repositories not found";
+        } else {
+          this.errorsMsg = "API Error: " + statusText;
+        }
+      }
+
+      this.$emit("clickButton", {
+        title: this.title,
+        repos: data,
+        errors: this.errorsMsg,
       });
-      this.$emit("ViewStarred", this.title);
     },
   },
 };

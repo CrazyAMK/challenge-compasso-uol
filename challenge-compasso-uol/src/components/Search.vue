@@ -17,49 +17,40 @@
         Search
       </button>
     </form>
-
-    <UserDetails :data="data" v-show="isShowDetails"></UserDetails>
+    <div v-if="errorsMsg">
+      <p class="alert alert-danger" role="alert">{{ errorsMsg }}</p>
+    </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import axios from "axios";
-import VueAxios from "vue-axios";
-
-Vue.use(VueAxios, axios);
-
-//Components
-
-import UserDetails from "./UserDetails.vue";
-import Results from "./Results.vue";
-
 export default {
-  components: { UserDetails, Results },
   data() {
     return {
       username: "",
       data: [],
-      isShowDetails: false,
-      isShowResults: false,
       errorsMsg: "",
     };
   },
   methods: {
-    search() {
+    async search() {
+      this.errorsMsg = "";
+      let data = null;
       const api = `https://api.github.com/users/${this.username}`;
-      this.isShowResults = true;
-      Vue.axios
-        .get(api)
-        .then((response) => {
-          this.data = response.data;
-          this.isShowDetails = true;
-        })
-        .catch((error) => {
+
+      try {
+        let response = await this.axios.get(api);
+        data = response.data;
+      } catch (error) {
+        const { status, statusText } = error.response;
+        if (status === 404) {
           this.errorsMsg = "User not found";
-          this.data = [];
-          this.isShowDetails = true;
-        });
+        } else {
+          this.errorsMsg = "API Error: " + statusText;
+        }
+      }
+
+      this.$emit("onSearch", data);
     },
   },
   mounted() {

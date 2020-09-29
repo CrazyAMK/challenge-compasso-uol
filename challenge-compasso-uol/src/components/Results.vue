@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="repos.length" class="results mt-5">
-      <slot name="title"></slot>
+    <div v-if="repos" class="results mt-5">
+      <slot name="title">Repositories</slot>
       <hr />
       <ul class="mt-4 list-group list-group-flush">
         <li v-for="repo in repos" class="col-12 m-0">
@@ -14,17 +14,17 @@
         </li>
       </ul>
     </div>
-    <div v-else-if="repos.length == 0" class="mt-5">
-      <slot name="title">Repositorios</slot>
+    <div v-else-if="errors.length" class="mt-5">
+      <slot name="title">Repositories</slot>
       <hr />
-      <p class="alert alert-danger" role="alert">Repositories not found</p>
+      <p class="alert alert-danger" role="alert">{{ errors }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["repos"],
+  props: ["repos", "errors"],
 };
 </script>
 
