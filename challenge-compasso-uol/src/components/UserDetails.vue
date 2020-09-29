@@ -1,17 +1,20 @@
 <template>
   <div v-if="data.length != 0" class="user-details mt-5">
-    <h2>User details</h2>
+    <h2>{{ data.name }}</h2>
     <hr />
     <div class="row flex-row-reverse">
       <div class="col-sm-6 align-self-center">
         <div class="col-12 avatar_img m-auto pb-2">
           <img :src="data.avatar_url" :alt="data.name" />
+          <a
+            :href="data.html_url"
+            target="_blank"
+            class="btn btn-outline-success w-100 mt-2"
+            >Visit profile</a
+          >
         </div>
       </div>
       <ul class="col-sm-6 align-self-center mb-3 list-group-flush">
-        <li class="col-12 list-group-item" v-if="data.name">
-          <b>Name:</b> {{ data.name }}
-        </li>
         <li class="col-12 list-group-item" v-if="data.login">
           <b>Username:</b> {{ data.login }}
         </li>
@@ -35,6 +38,23 @@
             target="_blank"
             >@{{ data.twitter_username }}</a
           >
+        </li>
+        <li class="col-12 list-group-item" v-if="data.location">
+          <b>Member Since:</b> {{ data.created_at }}
+        </li>
+        <li class="col-12 list-group-item">
+          <span class="badge badge-dark">
+            Public Repos: {{ data.public_repos }}
+          </span>
+          <span class="badge badge-info">
+            Public Gists: {{ data.public_gists }}
+          </span>
+          <span class="badge badge-success">
+            Followers: {{ data.followers }}
+          </span>
+          <span class="badge badge-danger">
+            Following: {{ data.following }}
+          </span>
         </li>
       </ul>
     </div>

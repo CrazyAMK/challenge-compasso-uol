@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="repos" class="results mt-5">
+    <div v-if="repos.length != 0" class="results mt-5">
       <slot name="title">Repositories</slot>
       <hr />
       <ul class="mt-4 list-group list-group-flush">

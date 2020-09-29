@@ -1,14 +1,11 @@
 <template>
   <div>
-    <div class="col-12 mt-4 text-center">
+    <div class="col-12 mt-5 text-center">
       <button @click="viewRepos" class="btn btn-outline-success">Repos</button>
       <button @click="viewStarred" class="btn btn-outline-success">
         Starred
       </button>
     </div>
-    <!-- <Results :repos="repos" v-show="isShowResult">
-      <h2 slot="title">{{ title }}</h2>
-    </Results> -->
   </div>
 </template>
 <script>
