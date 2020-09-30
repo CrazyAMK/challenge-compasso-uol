@@ -61,7 +61,6 @@ export default {
           this.errorsMsg = "Repositories not found";
         }
       } catch (error) {
-        console.log(error.response);
         const { status, statusText } = error.response;
         if (status === 404) {
           this.errorsMsg = "Repositories not found";
